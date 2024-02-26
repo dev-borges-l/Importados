@@ -134,8 +134,8 @@
 })(jQuery);
 
 
-  // Função para definir o link ativo
-  function setActive(page) {
+ // Função para definir o link ativo
+ function setActive(link) {
     // Remove a classe "active" de todos os links
     var allLinks = document.querySelectorAll('.nav-item.nav-link');
     allLinks.forEach(function (item) {
@@ -143,20 +143,16 @@
     });
 
     // Adiciona a classe "active" ao link clicado
-    var activeLink = document.querySelector('[href="' + page + '.html"]');
-    activeLink.classList.add('active');
-
-    // Armazena o estado no localStorage
-    localStorage.setItem('activeLink', page);
+    link.classList.add('active');
 }
 
-  // Verifica se há um link ativo armazenado e define-o ao carregar a página
-  document.addEventListener('DOMContentLoaded', function () {
-    var storedActiveLink = localStorage.getItem('activeLink');
-    if (storedActiveLink) {
-        setActive(storedActiveLink);
-    } else {
-        // Se não houver link ativo armazenado, definir 'index' como ativo por padrão
-        setActive('index');
+// Verifica o nome da página atual e destaca o link correspondente
+document.addEventListener('DOMContentLoaded', function () {
+    var pathArray = window.location.pathname.split('/');
+    var page = pathArray.pop() || pathArray.pop(); // Pega o último segmento do caminho
+
+    var activeLink = document.querySelector('[href="' + page + '"]');
+    if (activeLink) {
+        setActive(activeLink);
     }
 });
