@@ -133,3 +133,30 @@
     
 })(jQuery);
 
+
+  // Função para definir o link ativo
+  function setActive(page) {
+    // Remove a classe "active" de todos os links
+    var allLinks = document.querySelectorAll('.nav-item.nav-link');
+    allLinks.forEach(function (item) {
+        item.classList.remove('active');
+    });
+
+    // Adiciona a classe "active" ao link clicado
+    var activeLink = document.querySelector('[href="' + page + '.html"]');
+    activeLink.classList.add('active');
+
+    // Armazena o estado no localStorage
+    localStorage.setItem('activeLink', page);
+}
+
+  // Verifica se há um link ativo armazenado e define-o ao carregar a página
+  document.addEventListener('DOMContentLoaded', function () {
+    var storedActiveLink = localStorage.getItem('activeLink');
+    if (storedActiveLink) {
+        setActive(storedActiveLink);
+    } else {
+        // Se não houver link ativo armazenado, definir 'index' como ativo por padrão
+        setActive('index');
+    }
+});
