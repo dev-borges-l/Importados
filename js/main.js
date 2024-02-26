@@ -134,8 +134,8 @@
 })(jQuery);
 
 
- // Função para definir o link ativo
- function setActive(link) {
+  // Função para definir o link ativo
+  function setActive(link) {
     // Remove a classe "active" de todos os links
     var allLinks = document.querySelectorAll('.nav-item.nav-link');
     allLinks.forEach(function (item) {
@@ -150,6 +150,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     var pathArray = window.location.pathname.split('/');
     var page = pathArray.pop() || pathArray.pop(); // Pega o último segmento do caminho
+
+    console.log("Caminho do URL:", window.location.pathname);
+    console.log("Página Atual:", page);
 
     var activeLink = document.querySelector('[href="' + page + '"]');
     if (activeLink) {
