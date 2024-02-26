@@ -10563,7 +10563,13 @@ h6,
   }
 }
 
-.navbar-brand_logo {
+.navbar-brand .logo {
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+}
+.navbar-brand .logo-footer {
   width: 100%;
 
   display: flex;
